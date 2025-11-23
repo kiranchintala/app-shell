@@ -3,6 +3,7 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const deps = require('./package.json').dependencies;
 
 module.exports = {
   entry: './src/main.jsx',
@@ -39,6 +40,10 @@ module.exports = {
         react: { singleton: true, requiredVersion: '^18.2.0' },
         'react-dom': { singleton: true, requiredVersion: '^18.2.0' },
         'react-router-dom': { singleton: true, requiredVersion: '^6.20.0' },
+        '@tanstack/react-query': {
+          singleton: true,
+          requiredVersion: deps['@tanstack/react-query'],
+        },
         '@mtbs/shared-lib': {
           singleton: true,
           requiredVersion: '^1.0.0'
